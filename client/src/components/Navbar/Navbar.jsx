@@ -4,7 +4,9 @@ import { Link, NavLink } from "react-router-dom";
 import { assets } from "../../assets/assets";
 
 const Navbar = () => {
+  // visiblity of sidebar menu for small screens
   const [visible, setVisible] = useState(false);
+
   return (
     <div className="flex items-center justify-between py-5 text-gray-700 font-medium">
       <h1 className="w-36">LOGO</h1>
