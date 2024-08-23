@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Navbar.css";
 import { Link, NavLink } from "react-router-dom";
 import { assets } from "../../assets/assets";
 
@@ -9,7 +8,7 @@ const Navbar = () => {
 
   return (
     <div className="flex items-center justify-between py-5 text-gray-700 font-medium">
-      <h1 className="w-36">LOGO</h1>
+      <Link to="/"><h1 className="w-36">THREADLY</h1></Link>
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700 ">
         <NavLink to="/" className="flex flex-col items-center gap-1">
