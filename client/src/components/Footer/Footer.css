@@ -1,0 +1,11 @@
+/* footer {
+  margin-top: auto; /* bcuz footer is a flex item (its a child of the App div which is a flex container) u can use "auto" which places as much margin between itself and the next flex item */
+/*   height: 80px;
+  padding: 2rem;
+  color: var(--green);
+  text-align: center;
+} */ 
+
+footer{
+    margin-top: auto;
+}
