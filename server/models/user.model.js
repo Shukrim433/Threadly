@@ -39,9 +39,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-userSchema.methods.isCorrectPassword = async function (password) {
-  return bcrypt.compare(password, this.password);
-};
+// removed correctPw instance method from here, instead used it + bcrypt.compare directly in login controller
 
 const User = mongoose.model("User", userSchema);
 
