@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv"; // allows you to use values in env file
+import cookieParser from "cookie-parser"; // allows you to retrieve jwt tokens stored in cookies
 
 import authRoutes from "./routes/auth.routes.js";
 import connectToMongoDB from "./db/connectToMongoDB.js";
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 5000;
 dotenv.config();
 
 app.use(express.json()); // to parse the incoming request with JSON payloads (from req.body)
+app.use(cookieParser()); // to parse the incoming cookies from req.cookies
 
 app.use("/api/auth", authRoutes);
 
