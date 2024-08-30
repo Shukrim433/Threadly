@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
+import { useShopContext } from "../../context/ShopContext";
+import useLogout from "../../hooks/useLogout";
 
 const Navbar = () => {
   // visiblity of sidebar menu for small screens
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
+  const { authenticatedUser } = useShopContext();
+  const { loading, logout } = useLogout();
 
   return (
     <div className="flex items-center justify-between py-5 text-gray-700 font-medium">
-      <Link to="/"><h1 className="w-36">THREADLY</h1></Link>
+      <Link to="/">
+        <h1 className="w-36">THREADLY</h1>
+      </Link>
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700 ">
         <NavLink to="/" className="flex flex-col items-center gap-1">
@@ -64,9 +71,32 @@ const Navbar = () => {
           {/* hover over profile icon = show div w/ other links */}
           <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
             <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
-              <p className="cursor-pointer hover:text-black">My profile</p>
-              <p className="cursor-pointer hover:text-black">Orders</p>
-              <p className="cursor-pointer hover:text-black">Logout</p>
+              {/* if logged in show this* else show login btn */}
+              {authenticatedUser ? (
+                <>
+                  <p className="cursor-pointer hover:text-black">My profile</p>
+                  <p className="cursor-pointer hover:text-black">Orders</p>
+                  <p
+                    className="cursor-pointer hover:text-black"
+                    onClick={logout}
+                  >
+                    {loading ? (
+                      <span className="loading loading-spinner" />
+                    ) : (
+                      "Logout"
+                    )}
+                  </p>
+                </>
+              ) : (
+                <p
+                  className="cursor-pointer hover:text-black"
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  Login
+                </p>
+              )}
             </div>
           </div>
         </div>
