@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
 
 const Login = () => {
   const [formState, setFormState] = useState({
     username: "",
     password: "",
   });
+  const { loading, login } = useLogin();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -16,13 +18,14 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // CONTINUE HERE - LOGIN LOGIC GOES HERE!
+    // LOGIN LOGIC GOES HERE!
+    await login(formState);
   };
 
   return (
-    <div className="signup flex flex-col items-center justify-center w-2/3 mt-20 mb-20 mx-auto border bg-gray-100 rounded-md ">
+    <div className="signup flex flex-col items-center justify-center w-2/3 mt-10 mb-20 mx-auto border bg-gray-100 rounded-md ">
       <div className="w-full p-6 rounded-md ">
         <h1 className="text-3xl font-semibold text-center text-gray-700">
           Login
@@ -63,8 +66,11 @@ const Login = () => {
           </Link>
 
           <div>
-            <button className="btn btn-block btn-sm mt-2 bg-blue-500  border-blue-500 text-white">
-              Login
+            <button
+              className="btn btn-block btn-sm mt-2 bg-blue-500  border-blue-500 text-white"
+              disabled={loading}
+            >
+              {loading ? <span className="loading loading-spinner" /> : "Login"}
             </button>
           </div>
         </form>
