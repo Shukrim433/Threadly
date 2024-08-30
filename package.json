@@ -6,6 +6,7 @@
   "scripts": {
     "server": "nodemon server/server.js",
     "start": "node server/server.js",
+    "seed": "cd server && node seeds/seed.js",
     "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "type": "module",
