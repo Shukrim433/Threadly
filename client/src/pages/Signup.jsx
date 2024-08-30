@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import useSignup from "../hooks/useSignup";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -14,16 +15,19 @@ const Signup = () => {
     const { value, name } = event.target;
     setFormState({
       ...formState,
-      [name]: value
-    })
+      [name]: value,
+    });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    // CONTINUE HERE - SIGNUP LOGIC GOES HERE!
-  }
+  const { loading, signup } = useSignup();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // SIGNUP LOGIC GOES HERE!
+    await signup(formState); // pass user inputs to signup hook
+  };
   return (
-    <div className="signup flex flex-col items-center justify-center w-2/3 mt-20 mb-20 mx-auto border bg-gray-100 rounded-md ">
+    <div className="signup flex flex-col items-center justify-center w-2/3 mt-10 mb-20 mx-auto border bg-gray-100 rounded-md ">
       <div className="w-full p-6 rounded-md ">
         <h1 className="text-3xl font-semibold text-center text-gray-700">
           Sign Up
@@ -108,8 +112,15 @@ const Signup = () => {
           </Link>
 
           <div>
-            <button className="btn btn-block btn-sm mt-2 bg-blue-500  border-blue-500 text-white">
-              Sign Up
+            <button
+              className="btn btn-block btn-sm mt-2 bg-blue-500  border-blue-500 text-white"
+              disabled={loading}
+            >
+              {loading ? (
+                <span className="loading loading-spinner" />
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </div>
         </form>
