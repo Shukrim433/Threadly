@@ -1,9 +1,11 @@
 import dotenv from "dotenv"; // allows you to use values in env file
-dotenv.config({ path: '../.env' }); // bcuz .env file is in the root directory not the server also up here to ensure .env variables are loaded ASAP
+dotenv.config(); // put up here so it loads .env variables ASAP.
 import express from "express";
 import cookieParser from "cookie-parser"; // allows you to retrieve jwt tokens stored in cookies
 
 import authRoutes from "./routes/auth.routes.js";
+import productRoutes from "./routes/product.routes.js";
+
 import connectToMongoDB from "./db/connectToMongoDB.js";
 
 const app = express();
@@ -13,6 +15,7 @@ app.use(express.json()); // to parse the incoming request with JSON payloads (fr
 app.use(cookieParser()); // to parse the incoming cookies from req.cookies
 
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
 /* app.get("/", (req, res) => {
   // root route http://localhost:5000/
