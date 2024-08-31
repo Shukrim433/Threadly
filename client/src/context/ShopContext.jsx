@@ -15,10 +15,14 @@ export const ShopContextProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("logged-in-user")) || null
   );
 
-  // object holds all the values you want available globally to all components
+  // state holds selected product
+  const [selectedProduct, setSelectedProduct] = useState({});
+
   const value = {
     authenticatedUser: authenticatedUser,
     setAuthenticatedUser: setAuthenticatedUser,
+    selectedProduct: selectedProduct,
+    setSelectedProduct: setSelectedProduct,
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
