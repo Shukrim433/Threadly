@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config({ path: '../.env' }); // bcuz .env file is in the root directory not the server also up here to ensure .env variables are loaded ASAP
-import Product from "../models/product.model.js";
 import Category from "../models/category.model.js";
+import Product from "../models/product.model.js";
 import connectToMongoDB from "../db/connectToMongoDB.js";
 
 

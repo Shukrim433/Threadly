@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Category from "./category.model.js"; // imported Category model in here bcuz the .populate in my resolvers wasnt working when testing in postam, i think that fixed it?
 
 const productSchema = new mongoose.Schema(
   {
@@ -25,7 +26,6 @@ const productSchema = new mongoose.Schema(
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
-      required: true,
     },
   },
   { timestamps: true }
