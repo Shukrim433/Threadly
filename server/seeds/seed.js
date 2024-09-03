@@ -1,42 +1,67 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-dotenv.config({ path: '../.env' }); // bcuz .env file is in the root directory not the server also up here to ensure .env variables are loaded ASAP
+dotenv.config({ path: "../.env" }); // bcuz .env file is in the root directory not the server also up here to ensure .env variables are loaded ASAP
 import Category from "../models/category.model.js";
 import Product from "../models/product.model.js";
 import connectToMongoDB from "../db/connectToMongoDB.js";
 
-
 const categories = [
-  { name: "Electronics" },
-  { name: "Clothing" },
-  { name: "Books" },
+  { name: "Women" },
+  { name: "Men" },
+  { name: "Kids" },
 ];
 
 const products = [
   {
-    name: "camera",
-    description: "Latest model with high-end specs",
-    image: "/images/camera.jpg",
-    price: 699.99,
+    name: "Women Round Neck Cotton Top",
+    description:
+      "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+    price: 100,
+    images: ["/images/p_img1.png"],
     quantity: 50,
-    categoryName: "Electronics",
+    category: "Women",
   },
   {
-    name: "soap",
-    description: "100% cotton, comfortable fit",
-    image: "/images/soap.jpg",
-    price: 19.99,
+    name: "Men Round Neck Pure Cotton T-shirt",
+    description:
+      "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+    price: 200,
+    images: [
+      "/images/p_img2_1.png",
+      "/images/p_img2_2.png",
+      "/images/p_img2_3.png",
+      "/images/p_img2_4.png",
+    ],
     quantity: 100,
-    categoryName: "Clothing",
+    category: "Men",
   },
   {
-    name: "tablet",
-    description: "Best-selling mystery novel",
-    image: "/images/tablet.jpg",
-    price: 12.99,
+    name: "Girls Round Neck Cotton Top",
+    description:
+      "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+    price: 220,
+    images: ["/images/p_img3.png"],
     quantity: 75,
-    categoryName: "Books",
+    category: "Kids",
   },
+  {
+    name: "Men Round Neck Pure Cotton T-shirt",
+    description:
+      "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+    price: 110,
+    images: ["/images/p_img4.png"],
+    quantity: 75,
+    category: "Men",
+  },
+  {
+    name: "Women Round Neck Cotton Top",
+    description:
+      "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+    price: 130,
+    images: ["/images/p_img5.png"],
+    quantity: 75,
+    category: "Women",
+  }
 ];
 
 const seedDatabase = async () => {

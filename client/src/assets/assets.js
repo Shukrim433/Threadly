@@ -1,11 +1,11 @@
-import p_img1 from './p_img1.png'
+/* import p_img1 from './p_img1.png'
 import p_img2_1 from './p_img2_1.png'
 import p_img2_2 from './p_img2_2.png'
 import p_img2_3 from './p_img2_3.png'
 import p_img2_4 from './p_img2_4.png'
 import p_img3 from './p_img3.png'
 import p_img4 from './p_img4.png'
-import p_img5 from './p_img5.png'
+import p_img5 from './p_img5.png' */
 import p_img6 from './p_img6.png'
 import p_img7 from './p_img7.png'
 import p_img8 from './p_img8.png'
@@ -98,7 +98,7 @@ export const assets = {
 }
 
 export const products = [
-    {
+    /* {
         _id: "aaaaa",
         name: "Women Round Neck Cotton Top",
         description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
@@ -157,7 +157,7 @@ export const products = [
         sizes: ["M", "L", "XL"],
         date: 1716622345448,
         bestseller: true
-    },
+    }, */
     {
         _id: "aaaaf",
         name: "Girls Round Neck Cotton Top",
