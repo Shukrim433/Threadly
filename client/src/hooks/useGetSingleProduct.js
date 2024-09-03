@@ -13,17 +13,16 @@ const useGetSingleProduct = () => {
     const getSingleProduct = async () => {
       setLoading(true);
       try {
-        const res = await fetch(
-          `/api/products/${selectedProduct?._id || productId}`
-        );
-        console.log("selectedProduct", selectedProduct);
+        const res = await fetch(`/api/products/${productId}`);
+
+        // console.log("selectedProduct", selectedProduct);
         const data = await res.json();
+
         if (data.error) {
           throw new Error(data.error);
         }
 
         setProduct(data);
-        setSelectedProduct(data); // Update context with fetched product for when the page refreshes
       } catch (error) {
         toast.error(error.message);
       } finally {
@@ -31,11 +30,10 @@ const useGetSingleProduct = () => {
       }
     };
 
-    // only call function if selectedConversation + productId are not null
-    if (selectedProduct?._id || productId) {
-      getSingleProduct();
-    }
-  }, [selectedProduct, productId]); // idk why these r in the dependecy array? works just fine when its empty
+    // only call function if selectedConversation or productId is not null
+
+    getSingleProduct();
+  }, [productId]);
 
   return { loading, product };
 };
