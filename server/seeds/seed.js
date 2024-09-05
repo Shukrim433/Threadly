@@ -85,7 +85,7 @@ const seedDatabase = async () => {
     // replace category names with category IDs in products
     const productsWithCategoryIds = products.map((product) => ({
       ...product,
-      category: categoryMap[product.categoryName],
+      category: categoryMap[product.category],
     }));
 
     // insert products
