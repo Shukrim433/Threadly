@@ -8,13 +8,16 @@ const Navbar = () => {
   // visiblity of sidebar menu for small screens
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
-  const { authenticatedUser } = useShopContext();
+  const { authenticatedUser, getCartCount } = useShopContext();
   const { loading, logout } = useLogout();
 
   return (
     <div className="flex items-center justify-between py-5 text-gray-700 font-medium">
       <Link to="/">
-        <h1 className="w-36">THREADLY</h1>
+        <h1 className="w-36">
+          <span className="text-pink-600">T</span>HREADL
+          <span className="text-pink-600">Y</span>
+        </h1>
       </Link>
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700 ">
@@ -33,7 +36,7 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-6">
-        {/* search icon */}
+        {/* SEARCH */}
         <div className="w-5 cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -100,8 +103,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        {/* cart icon */}
-        <Link to="/cart" className="relative">
+        {/* CART ICON - can only go to cart page if logged in*/}
+        <Link to={authenticatedUser ? "/cart" : "/login"} className="relative">
           <div className="w-5 min-w-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -118,12 +121,16 @@ const Navbar = () => {
               />
             </svg>
           </div>
-          {/* count for no of items in cart */}
-          <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-red-700 text-white aspect-square rounded-full text-[8px]">
-            3
-          </p>
+          {/* CART ITEMS COUNT  - only show circle if logged in*/}
+          {authenticatedUser ? (
+            <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-pink-600 text-white aspect-square rounded-full text-[8px]">
+              {getCartCount()}
+            </p>
+          ) : (
+            ""
+          )}
         </Link>
-        {/* menu icon -  only displayed on small screens */}
+        {/* MENU ICON -  only displayed on small screens */}
         <div
           onClick={() => {
             setVisible(true);
@@ -147,7 +154,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* sidebar menu for small screens  - dynamic class names dependant on "visible" state*/}
+      {/* SIDEBAR MENU FOR SMALL SCREENS  - dynamic class names dependant on "visible" state*/}
       <div
         className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
           visible ? `w-full` : `w-0`
