@@ -46,7 +46,7 @@ export const ShopContextProvider = ({ children }) => {
       cartData[itemId][size] = 1;
     }
     setCartItems(cartData);
-    toast.success("Added to cart!")
+    toast.success("Added to cart!");
   };
 
   const getCartCount = () => {
@@ -96,9 +96,12 @@ export const ShopContextProvider = ({ children }) => {
     return totalAmount;
   };
 
+  const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
+
   // run this console.log whenever theres any change to the cart
   useEffect(() => {
-    console.log("cartItems",cartItems);
+    console.log("cartItems", cartItems);
   }, ["cartItems", cartItems]);
 
   const value = {
@@ -111,6 +114,10 @@ export const ShopContextProvider = ({ children }) => {
     getCartCount: getCartCount,
     updateQuantity: updateQuantity,
     getCartTotal: getCartTotal,
+    search: search,
+    setSearch: setSearch,
+    showSearch: showSearch,
+    setShowSearch: setShowSearch,
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
