@@ -8,7 +8,7 @@ const Navbar = () => {
   // visiblity of sidebar menu for small screens
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
-  const { authenticatedUser, getCartCount } = useShopContext();
+  const { authenticatedUser, getCartCount, setShowSearch } = useShopContext();
   const { loading, logout } = useLogout();
 
   return (
@@ -25,6 +25,10 @@ const Navbar = () => {
           <p>HOME</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
+        <NavLink to="/collection" className="flex flex-col items-center gap-1">
+          <p>COLLECTIONS</p>
+          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+        </NavLink>
         <NavLink to="/about" className="flex flex-col items-center gap-1">
           <p>ABOUT</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
@@ -36,8 +40,11 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-6">
-        {/* SEARCH */}
-        <div className="w-5 cursor-pointer">
+        {/* SEARCH ICON*/}
+        <div onClick={()=>{
+          navigate("/collection") // go to collection page and show search bar when click icon
+          setShowSearch(true)}}
+        className="w-5 cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
