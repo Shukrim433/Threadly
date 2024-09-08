@@ -32,7 +32,7 @@ const protectRoute = async (req, res, next) => {
     // if _id is found in the db, add the key "user" to the request object and its value="authenticatedPerson"
     req.user = authenticatedPerson;
 
-    next();
+    next(); 
   } catch (error) {
     console.log("error in protectRoute middleware", error.message);
     res.status(500).json({ error: "internal server error" });

@@ -21,9 +21,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    cartData: { type: Object, default: {} },
     orders: [Order.schema], // this is an array of Order records, and each order record is an array of Products, and a date
   },
-  { timestamps: true } // for createdAt and updatedAt fields - client - member since <user.createdAt>
+  { timestamps: true, minimize: false } //** // for createdAt and updatedAt fields - client - member since <user.createdAt>
 );
 
 userSchema.pre("save", async function (next) {
@@ -40,3 +41,9 @@ userSchema.pre("save", async function (next) {
 const User = mongoose.model("User", userSchema);
 
 export default User;
+
+
+/* 
+By default, Mongoose will "minimize" (or remove) empty objects when they are saved to the database. 
+When minimize: false is set, Mongoose will preserve empty objects in the document instead of removing them.
+*/

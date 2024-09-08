@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser"; // allows you to retrieve jwt tokens s
 
 import authRoutes from "./routes/auth.routes.js";
 import productRoutes from "./routes/product.routes.js";
+import cartRoutes from "./routes/cart.routes.js";
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
 
@@ -16,6 +17,7 @@ app.use(cookieParser()); // to parse the incoming cookies from req.cookies
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
 
 /* app.get("/", (req, res) => {
   // root route http://localhost:5000/
