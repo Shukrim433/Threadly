@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useShopContext } from "../context/ShopContext";
 import useGetProducts from "../hooks/useGetProducts";
 import Title from "../components/Title/Title";
@@ -8,6 +9,7 @@ const Cart = () => {
   const { loading, products } = useGetProducts();
   const { cartItems, updateQuantity } = useShopContext();
   const [cartData, setCartData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const tempData = [];
@@ -111,7 +113,7 @@ const Cart = () => {
         <div className="w-full sm:w-[450px]">
           <CartTotal />
           <div className="w-full text-end">
-            <button className="bg-black  active:bg-pink-600 text-white text-sm my-8 px-8 py-3">
+            <button onClick={()=>navigate("/place-order")} className="bg-black  active:bg-pink-600 text-white text-sm my-8 px-8 py-3">
               PROCEED TO CHECKOUT
             </button>
           </div>
