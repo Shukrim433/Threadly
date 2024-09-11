@@ -17,6 +17,7 @@ import Contact from "./pages/Contact";
 import Signup from "./pages/Signup";
 import Collection from "./pages/Collection";
 import SearchBar from "./components/SearchBar/SearchBar";
+import Verify from "./pages/Verify";
 
 const App = () => {
   const { authenticatedUser } = useShopContext();
@@ -32,9 +33,10 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/collection" element={<Collection/>} />
         <Route path="/products/:productId" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/place-order" element={<PlaceOrder />} />
-        <Route path="/orders" element={<Orders />} />
+        <Route path="/cart"  element={authenticatedUser ? <Cart /> :  <Navigate to="/login"/>} />
+        <Route path="/place-order" element={authenticatedUser ? <PlaceOrder /> :  <Navigate to="/login"/>} />
+        <Route path="/orders"  element={authenticatedUser ? <Orders /> :  <Navigate to="/login"/>} />
+        <Route path="/verify"  element={authenticatedUser ? <Verify /> :  <Navigate to="/login"/>} />
       </Routes>
       <Toaster />
       <Footer />
