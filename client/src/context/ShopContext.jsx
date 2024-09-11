@@ -23,7 +23,6 @@ export const ShopContextProvider = ({ children }) => {
   // immediately on page load set cartItems to "cart-items" fetched from local storage
   const [cartItems, setCartItems] = useState(() => {
     const storedCart = localStorage.getItem("cart-items");
-    console.log("Initializing cart from localStorage:", storedCart);
     return storedCart ? JSON.parse(storedCart) : {};
   });
   
@@ -108,7 +107,6 @@ export const ShopContextProvider = ({ children }) => {
 
   // everytime cartItems changes update local storage "cart-items"
   useEffect(() => {
-    console.log("Saving cart to localStorage:", cartItems);
     if (cartItems) {
       localStorage.setItem("cart-items", JSON.stringify(cartItems));
     }

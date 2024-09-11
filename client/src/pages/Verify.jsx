@@ -9,7 +9,7 @@ const Verify = () => {
   const orderId = searchParams.get("orderId"); // = id of placed order
   const navigate = useNavigate()
 
-  console.log(success, orderId);
+  /* console.log(success, orderId); */
 
   const verifyPayment = async () => {
     const res = await axios.post("/api/order/verify", {success, orderId})

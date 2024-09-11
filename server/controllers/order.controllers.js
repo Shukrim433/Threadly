@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // placing user order from client
 export const placeOrder = async (req, res) => {
-  const frontend_url = "http://localhost:3000";
+  const frontend_url = "https://threadly-1kxd.onrender.com";
   try {
     const orderData = new Order({
       userId: req.user._id,
