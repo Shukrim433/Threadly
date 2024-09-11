@@ -41,10 +41,13 @@ const Navbar = () => {
 
       <div className="flex items-center gap-6">
         {/* SEARCH ICON*/}
-        <div onClick={()=>{
-          navigate("/collection") // go to collection page and show search bar when click icon
-          setShowSearch(true)}}
-        className="w-5 cursor-pointer">
+        <div
+          onClick={() => {
+            navigate("/collection"); // go to collection page and show search bar when click icon
+            setShowSearch(true);
+          }}
+          className="w-5 cursor-pointer"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -84,8 +87,14 @@ const Navbar = () => {
               {/* if logged in show this* else show login btn */}
               {authenticatedUser ? (
                 <>
-                  <p className="cursor-pointer hover:text-black">My profile</p>
-                  <p className="cursor-pointer hover:text-black">Orders</p>
+                  <p
+                    className="cursor-pointer hover:text-black"
+                    onClick={() => {
+                      navigate("/orders");
+                    }}
+                  >
+                    My Orders
+                  </p>
                   <p
                     className="cursor-pointer hover:text-black"
                     onClick={logout}
