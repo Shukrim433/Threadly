@@ -4,7 +4,7 @@ import { useShopContext } from "../context/ShopContext";
 
 const useLogout = () => {
   const [loading, setLoading] = useState(false);
-  const { setAuthenticatedUser } = useShopContext();
+  const { setAuthenticatedUser, setCartItems } = useShopContext();
 
   const logout = async () => {
     setLoading(true);
@@ -18,10 +18,13 @@ const useLogout = () => {
         throw new Error(data.error);
       }
 
-      // REMOVE USER OBJ FROM LOCAL STORAGE - on successful logout
+      // REMOVE USER OBJ  + CART ITEMS FROM LOCAL STORAGE - on successful logout
       localStorage.removeItem("logged-in-user");
-      // REMOVE USER OBJ FROM CONTEXT - on successful logout
+      localStorage.removeItem("cart-items");
+      // REMOVE USER OBJ + CART ITEMS FROM CONTEXT - on successful logout
       setAuthenticatedUser(null);
+      setCartItems({})
+
     } catch (error) {
       toast.error(error.message);
     } finally {

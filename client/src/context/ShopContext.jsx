@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 import toast from "react-hot-toast";
 import useGetProducts from "../hooks/useGetProducts";
+import axios from "axios";
 
 // CONTEXT
 export const ShopContext = createContext();
@@ -15,11 +16,17 @@ export const useShopContext = () => {
 export const ShopContextProvider = ({ children }) => {
   const { loading, products } = useGetProducts();
   // state holds the logged in user
+  const [selectedProduct, setSelectedProduct] = useState({});
   const [authenticatedUser, setAuthenticatedUser] = useState(
     JSON.parse(localStorage.getItem("logged-in-user")) || null
   );
-  const [selectedProduct, setSelectedProduct] = useState({});
-  const [cartItems, setCartItems] = useState({});
+  // immediately on page load set cartItems to "cart-items" fetched from local storage
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCart = localStorage.getItem("cart-items");
+    console.log("Initializing cart from localStorage:", storedCart);
+    return storedCart ? JSON.parse(storedCart) : {};
+  });
+  
 
   const addToCart = async (authenticatedUser, itemId, size) => {
     if (!authenticatedUser) {
@@ -71,7 +78,7 @@ export const ShopContextProvider = ({ children }) => {
   const updateQuantity = async (itemId, size, quantity) => {
     let cartData = structuredClone(cartItems);
 
-    cartData[itemId][size] = quantity;
+    cartData[itemId][size] = quantity; // this will = req.body
 
     setCartItems(cartData); // Updates the state with the new cart data (so icon will show correct number)
   };
@@ -99,10 +106,13 @@ export const ShopContextProvider = ({ children }) => {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
 
-  // run this console.log whenever theres any change to the cart
+  // everytime cartItems changes update local storage "cart-items"
   useEffect(() => {
-    console.log("cartItems", cartItems);
-  }, ["cartItems", cartItems]);
+    console.log("Saving cart to localStorage:", cartItems);
+    if (cartItems) {
+      localStorage.setItem("cart-items", JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
 
   const value = {
     authenticatedUser: authenticatedUser,
@@ -110,6 +120,7 @@ export const ShopContextProvider = ({ children }) => {
     selectedProduct: selectedProduct,
     setSelectedProduct: setSelectedProduct,
     cartItems: cartItems,
+    setCartItems: setCartItems,
     addToCart: addToCart,
     getCartCount: getCartCount,
     updateQuantity: updateQuantity,
