@@ -1,16 +1,34 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-  purchaseDate: {
-    type: Date,
-    default: Date.now,
+  userId: {
+    type: String,
+    required: true,
   },
-  products: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
-    },
-  ],
+  items: {
+    type: Array,
+    required: true,
+  },
+  amount: {
+    type: Number,
+    required: true,
+  },
+  address: {
+    type: Object,
+    required: true,
+  },
+  status: {
+    type: String,
+    default: "Order Processing",
+  },
+  date: {
+    type: Date,
+    default: Date.now(), // or try created at instead?
+  },
+  payment: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Order = mongoose.model("Order", orderSchema);
