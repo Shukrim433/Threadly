@@ -209,6 +209,15 @@ const Navbar = () => {
             HOME
           </NavLink>
           <NavLink
+            to="/collection"
+            onClick={() => {
+              setVisible(false);
+            }}
+            className="py-2 pl-6 border"
+          >
+            COLLECTIONS
+          </NavLink>
+          <NavLink
             to="/about"
             onClick={() => {
               setVisible(false);
