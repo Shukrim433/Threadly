@@ -1,6 +1,5 @@
 import React from "react";
 import Title from "../components/Title/Title";
-import { assets } from "../assets/assets";
 
 const Contact = () => {
   return (
@@ -11,7 +10,7 @@ const Contact = () => {
       <div className="my-10 flex flex-col justify-center md:flex-row gap-10 mb-28">
         <img
           className="w-full md:max-w-[480px]"
-          src={assets.contact_img}
+          src="/images/contact_img.jpg"
           alt="clothes on a rack"
         />
         <div className="flex flex-col justify-center items-start gap-6">
