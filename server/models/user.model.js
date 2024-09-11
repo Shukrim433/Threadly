@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import Order from "./order.model.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -21,8 +20,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    cartData: { type: Object, default: {} },
-    orders: [Order.schema], // this is an array of Order records, and each order record is an array of Products, and a date
   },
   { timestamps: true, minimize: false } //** // for createdAt and updatedAt fields - client - member since <user.createdAt>
 );
