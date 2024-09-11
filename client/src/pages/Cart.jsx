@@ -7,7 +7,7 @@ import CartTotal from "../components/CartTotal/CartTotal";
 
 const Cart = () => {
   const { loading, products } = useGetProducts();
-  const { cartItems, updateQuantity } = useShopContext();
+  const { cartItems, updateQuantity, getCartCount } = useShopContext();
   const [cartData, setCartData] = useState([]);
   const navigate = useNavigate();
 
@@ -41,10 +41,6 @@ const Cart = () => {
           const productData = products.find((product) => {
             return product._id === item._id; //**
           });
-          /* console.log("cartData", cartData);
-          console.log("products", products);
-          console.log("productData", productData); */
-
           return (
             <div
               key={index}
@@ -109,16 +105,25 @@ const Cart = () => {
           );
         })}
       </div>
-      <div className="flex justify-end my-20">
-        <div className="w-full sm:w-[450px]">
-          <CartTotal />
-          <div className="w-full text-end">
-            <button onClick={()=>navigate("/place-order")} className="bg-black  active:bg-pink-600 text-white text-sm my-8 px-8 py-3">
-              PROCEED TO CHECKOUT
-            </button>
+      {getCartCount() > 0 ? (
+        <div className="flex justify-end my-20">
+          <div className="w-full sm:w-[450px]">
+            <CartTotal />
+            <div className="w-full text-end">
+              <button
+                onClick={() => navigate("/place-order")}
+                className="bg-black  active:bg-pink-600 text-white text-sm my-8 px-8 py-3"
+              >
+                PROCEED TO CHECKOUT
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="flex justify-center my-20 text-xl">
+          YOUR CART IS EMPTY
+        </div>
+      )}
     </div>
   );
 };
