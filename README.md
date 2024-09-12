@@ -26,7 +26,7 @@ I started this project to further improve upon my skills in MongoDB, Express.js,
 - Add to cart, remove from cart if you no longer want it, see cart total and sub total on the cart page.
 - Proceed to checkout, enter delivery information and proceed to payment.
 - The Stripe checkout page also shows cart total, enter test card details:
-  ![alt text](image.png)
+- ![alt text](image.png)
 - If the payment was successful you will be redirected to your orders page, showing all the items you have ordered.
 - If the payment was not successful you will be redirected to the home page and the notification "Payment was cancelled" will be displayed.
 - Logout when you want.
