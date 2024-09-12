@@ -4,9 +4,7 @@
 
 I started this project to further improve upon my skills in MongoDB, Express.js, React and Node.js. I also wanted to build a project that incorporated a payment system, such as stripe. So creating a ecommerce site was the perfect way to get that done.
 
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
