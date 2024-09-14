@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Orders = () => {
   const [myOrders, setMyOrders] = useState([]);
   const { authenticatedUser } = useShopContext();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const fetchOrders = async () => {
     const res = await axios.post("/api/order/userOrders");
@@ -20,7 +20,7 @@ const Orders = () => {
     fetchOrders();
   }, [authenticatedUser]); // when comp loads and or logged in user changes
 
-  return (
+  return myOrders.length > 0 ? (
     <div className="border-t pt-5 flex flex-col">
       {/* TITLE */}
       <div className="text-center py-8 text-3xl">
@@ -44,8 +44,10 @@ const Orders = () => {
             {/* MAP THRU ITEMS IN EACH ORDER */}
             {order.items.map((item) => (
               <>
-                <div className="flex items-center gap-5 mt-2 cursor-pointer"
-                onClick={()=> navigate(`/products/${item._id}`)}>
+                <div
+                  className="flex items-center gap-5 mt-2 cursor-pointer"
+                  onClick={() => navigate(`/products/${item._id}`)}
+                >
                   <img
                     className="w-16 sm:w-20"
                     src={item.images[0]}
@@ -69,6 +71,13 @@ const Orders = () => {
           </div>
         </div>
       ))}
+    </div>
+  ) : (
+    <div className="flex flex-col justify-center items-center text-center">
+      <div className="text-center py-8 text-3xl">
+        <Title text1={"MY"} text2={"ORDERS"} />
+      </div>
+      <div className="mt-10">YOU CURRENTLY DON'T HAVE ANY ORDERS.</div>
     </div>
   );
 };
