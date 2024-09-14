@@ -13,7 +13,7 @@ const Orders = () => {
   const fetchOrders = async () => {
     const res = await axios.post("/api/order/userOrders");
     setMyOrders(res.data.orderData);
-    console.log(res.data.orderData);
+    /* console.log(res.data.orderData); */
   };
 
   useEffect(() => {
