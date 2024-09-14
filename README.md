@@ -4,9 +4,7 @@
 
 I started this project to further improve upon my skills in MongoDB, Express.js, React and Node.js. I also wanted to build a project that incorporated a payment system, such as stripe. So creating a ecommerce site was the perfect way to get that done.
 
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -28,7 +26,7 @@ If your README is long, add a table of contents to make it easy for users to fin
 - Add to cart, remove from cart if you no longer want it, see cart total and sub total on the cart page.
 - Proceed to checkout, enter delivery information and proceed to payment.
 - The Stripe checkout page also shows cart total, enter test card details:
-  ![alt text](image.png)
+- ![alt text](image.png)
 - If the payment was successful you will be redirected to your orders page, showing all the items you have ordered.
 - If the payment was not successful you will be redirected to the home page and the notification "Payment was cancelled" will be displayed.
 - Logout when you want.
