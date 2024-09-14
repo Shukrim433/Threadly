@@ -11,6 +11,17 @@
   font-family: Outfit;
 }
 
+/* TO MAKE THE FOOTER STICK TO THE BOTTOM OF THE PAGE */
+.App{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.footer{
+  margin-top: auto;
+}
+/*  */
+
 .prata-regular {
   font-family: "Prata", serif;
   font-weight: 400;
